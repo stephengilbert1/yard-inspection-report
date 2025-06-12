@@ -4,6 +4,18 @@ import { createSchema } from "graphql-yoga";
 import type { NextRequest } from "next/server";
 import { prisma } from "../lib/prisma";
 
+type AddTransformerInput = {
+  quantity: number;
+  ncTe: string;
+  location: string;
+  inspectionDate: string;
+  tm: string;
+  kva: number;
+  transformerType: string;
+  sensorGen: string;
+  issues: string;
+};
+
 export const schema = createSchema<{ req: NextRequest }>({
   typeDefs: /* GraphQL */ `
     type Query {
@@ -48,7 +60,10 @@ export const schema = createSchema<{ req: NextRequest }>({
       },
     },
     Mutation: {
-      addTransformers: async (_: any, { input }: any) => {
+      addTransformers: async (
+        _: unknown,
+        { input }: { input: AddTransformerInput }
+      ) => {
         try {
           const {
             quantity,
