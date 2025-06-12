@@ -3,6 +3,7 @@ export type Transformer = {
   ncTe?: string;
   location?: string;
   inspectionDate?: string;
+  tm?: string;
   kva?: number;
   transformerType?: "1ph pole" | "3ph pole" | "1ph pad" | "3ph pad";
   sensorGen?: string;

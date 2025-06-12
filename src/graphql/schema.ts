@@ -2,9 +2,9 @@
 
 import { createSchema } from "graphql-yoga";
 import type { NextRequest } from "next/server";
+import { prisma } from "../lib/prisma";
 
 export const schema = createSchema<{ req: NextRequest }>({
-  // ✅ Add generic type here
   typeDefs: /* GraphQL */ `
     type Query {
       hello: String
@@ -20,6 +20,7 @@ export const schema = createSchema<{ req: NextRequest }>({
       location: String
       inspectionDate: String
       quantity: Int!
+      tm: String
       kva: Int
       transformerType: String
       sensorGen: String
@@ -31,46 +32,58 @@ export const schema = createSchema<{ req: NextRequest }>({
       ncTe: String
       location: String
       inspectionDate: String
+      tm: String
       kva: Int
       transformerType: String
       sensorGen: String
       issues: String!
+      createdAt: String
     }
   `,
   resolvers: {
     Query: {
       hello: () => "Hello from Yoga + Next.js!",
-      transformers: () => {
-        // this will later pull from a real database
-        return [];
+      transformers: async () => {
+        return await prisma.transformer.findMany();
       },
     },
     Mutation: {
       addTransformers: async (_: any, { input }: any) => {
-        const {
-          quantity,
-          ncTe,
-          location,
-          inspectionDate,
-          kva,
-          transformerType,
-          sensorGen,
-          issues,
-        } = input;
+        try {
+          const {
+            quantity,
+            ncTe,
+            location,
+            inspectionDate,
+            tm,
+            kva,
+            transformerType,
+            sensorGen,
+            issues,
+          } = input;
 
-        const newTransformers = Array.from({ length: quantity }, () => ({
-          id: crypto.randomUUID(),
-          ncTe,
-          location,
-          inspectionDate,
-          kva,
-          transformerType,
-          sensorGen,
-          issues,
-        }));
+          const created = await prisma.$transaction(
+            Array.from({ length: quantity }).map(() =>
+              prisma.transformer.create({
+                data: {
+                  ncTe,
+                  location,
+                  inspectionDate: inspectionDate.toString(),
+                  tm,
+                  kva,
+                  transformerType,
+                  sensorGen,
+                  issues,
+                },
+              })
+            )
+          );
 
-        console.log("Created transformer rows:", newTransformers);
-        return newTransformers;
+          return created;
+        } catch (error) {
+          console.error("❌ addTransformers mutation failed:", error);
+          throw new Error("Server error: Failed to add transformers.");
+        }
       },
     },
   },
