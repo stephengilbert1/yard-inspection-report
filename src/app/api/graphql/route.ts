@@ -3,13 +3,20 @@
 import { createYoga } from "graphql-yoga";
 import { schema } from "@/graphql/schema";
 import { NextRequest } from "next/server";
-console.log("Schema loaded from:", schema);
+
 const yoga = createYoga<{
   req: NextRequest;
 }>({
-  schema, // ✅ Use your real schema here
+  schema,
   graphqlEndpoint: "/api/graphql",
   fetchAPI: { Request, Response },
 });
 
-export { yoga as GET, yoga as POST };
+export async function GET(req: NextRequest) {
+  return yoga.handleRequest(req, { req });
+}
+
+// Explicit wrapper for POST
+export async function POST(req: NextRequest) {
+  return yoga.handleRequest(req, { req });
+}
