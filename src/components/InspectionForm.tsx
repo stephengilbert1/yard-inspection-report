@@ -9,10 +9,10 @@ type Props = {
 };
 
 export default function InspectionForm({ onAddGroup }: Props) {
+  const [qty, setQty] = useState<number>(1);
   const [ncTe, setNcTe] = useState("");
   const [location, setLocation] = useState("");
   const [inspectionDate, setInspectionDate] = useState("");
-  const [qty, setQty] = useState<number>(1);
   const [tm, setTM] = useState("");
   const [kva, setKVA] = useState<number | undefined>(undefined);
   const [type, setType] = useState<Transformer["transformerType"]>(undefined);
@@ -30,6 +30,7 @@ export default function InspectionForm({ onAddGroup }: Props) {
         ncTe
         location
         inspectionDate
+        tm
         kva
         transformerType
         sensorGen
@@ -43,6 +44,7 @@ export default function InspectionForm({ onAddGroup }: Props) {
       location,
       inspectionDate,
       quantity: qty,
+      tm,
       kva,
       transformerType: type,
       sensorGen,
@@ -181,6 +183,18 @@ export default function InspectionForm({ onAddGroup }: Props) {
           <option value="1ph pad">1ph pad</option>
           <option value="3ph pad">3ph pad</option>
         </select>
+      </div>
+
+      <div>
+        <label className="block text-sm font-medium text-slate-700">
+          Sensor Generation
+        </label>
+        <input
+          type="text"
+          value={sensorGen}
+          onChange={(e) => setSensorGen(e.target.value)}
+          className="mt-1 w-full border rounded px-3 py-2"
+        />
       </div>
 
       <div>

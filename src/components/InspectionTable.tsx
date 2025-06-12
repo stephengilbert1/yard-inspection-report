@@ -17,6 +17,7 @@ export default function InspectionTable({ groups = [], onRemove }: Props) {
           <th className="text-left px-3 py-2 border-b">TM</th>
           <th className="text-left px-3 py-2 border-b">kVA</th>
           <th className="text-left px-3 py-2 border-b">Type</th>
+          <th className="text-left px-3 py-2 border-b">Sensor Gen</th>
           <th className="text-left px-3 py-2 border-b">Issues</th>
           <th className="text-left px-3 py-2 border-b">Actions</th>
         </tr>
@@ -29,6 +30,7 @@ export default function InspectionTable({ groups = [], onRemove }: Props) {
             <td className="px-3 py-2 border-b">
               {group.transformerType || "—"}
             </td>
+            <td className="px-3 py-2 border-b">{group.sensorGen || "—"}</td>
             <td className="px-3 py-2 border-b">{group.issues || "—"}</td>
 
             <td className="px-3 py-2 border-b">

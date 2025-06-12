@@ -5,6 +5,7 @@ import { useState } from "react";
 import type { Transformer } from "@/types";
 import InspectionForm from "@/components/InspectionForm";
 import InspectionTable from "@/components/InspectionTable";
+import Link from "next/link";
 
 export default function YardPage() {
   const [groups, setGroups] = useState<Transformer[]>([]);
@@ -24,6 +25,14 @@ export default function YardPage() {
 
   return (
     <main className="p-8 max-w-3xl mx-auto">
+      <div className="mb-6">
+        <Link
+          href="/inspections"
+          className="text-blue-600 underline hover:text-blue-800"
+        >
+          ← View Inspection Records
+        </Link>
+      </div>
       <h1 className="text-3xl font-bold mb-6">Yard Inspection Report</h1>
       <InspectionForm onAddGroup={addGroup} />
       <InspectionTable groups={groups} onRemove={removeGroup} />

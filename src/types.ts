@@ -8,4 +8,5 @@ export type Transformer = {
   transformerType?: "1ph pole" | "3ph pole" | "1ph pad" | "3ph pad";
   sensorGen?: string;
   issues: string;
+  createdAt?: string | number;
 };
