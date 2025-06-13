@@ -21,6 +21,7 @@ export default function InspectionRecordsPage() {
                 transformers {
                   id
                   ncTe
+                  utility
                   location
                   inspectionDate
                   tm
@@ -69,34 +70,30 @@ export default function InspectionRecordsPage() {
           <table className="w-full border text-sm">
             <thead className="bg-slate-100">
               <tr>
-                <th className="px-3 py-2 border">Date</th>
+                <th className="px-3 py-2 border">NC/TE</th>
+                <th className="px-3 py-2 border">Utility</th>
+                <th className="px-3 py-2 border">Location</th>
+                <th className="px-3 py-2 border">Issues</th>
                 <th className="px-3 py-2 border">kVA</th>
                 <th className="px-3 py-2 border">Type</th>
                 <th className="px-3 py-2 border">TM</th>
-                <th className="px-3 py-2 border">Issues</th>
-                <th className="px-3 py-2 border">NC/TE</th>
-                <th className="px-3 py-2 border">Location</th>
-                <th className="px-3 py-2 border">Created</th>
+                <th className="px-3 py-2 border">Date</th>
               </tr>
             </thead>
             <tbody>
               {transformers.map((t) => (
                 <tr key={t.id} className="hover:bg-slate-50">
-                  <td className="px-3 py-2 border">
-                    {t.inspectionDate ?? "—"}
-                  </td>
+                  <td className="px-3 py-2 border">{t.ncTe ?? "—"}</td>
+                  <td className="px-3 py-2 border">{t.utility ?? "—"}</td>
+                  <td className="px-3 py-2 border">{t.location ?? "—"}</td>
+                  <td className="px-3 py-2 border">{t.issues ?? "—"}</td>
                   <td className="px-3 py-2 border">{t.kva ?? "—"}</td>
                   <td className="px-3 py-2 border">
                     {t.transformerType ?? "—"}
                   </td>
                   <td className="px-3 py-2 border">{t.tm ?? "—"}</td>
-                  <td className="px-3 py-2 border">{t.issues ?? "—"}</td>
-                  <td className="px-3 py-2 border">{t.ncTe ?? "—"}</td>
-                  <td className="px-3 py-2 border">{t.location ?? "—"}</td>
                   <td className="px-3 py-2 border">
-                    {t.createdAt
-                      ? new Date(Number(t.createdAt)).toLocaleString()
-                      : "—"}
+                    {t.inspectionDate ?? "—"}
                   </td>
                 </tr>
               ))}

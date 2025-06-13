@@ -21,7 +21,20 @@ export default function NewReportPage() {
             className="mt-1 block w-full rounded-md border border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
           />
         </div>
-
+        <div>
+          <label
+            htmlFor="utlity"
+            className="block text-sm font-medium text-slate-700"
+          >
+            Utility
+          </label>
+          <input
+            type="text"
+            id="utility"
+            name="utility"
+            className="mt-1 block w-full rounded-md border border-slate-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+          />
+        </div>
         <div>
           <label
             htmlFor="location"

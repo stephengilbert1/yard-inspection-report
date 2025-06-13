@@ -11,6 +11,7 @@ type Props = {
 export default function InspectionForm({ onAddGroup }: Props) {
   const [qty, setQty] = useState<number>(1);
   const [ncTe, setNcTe] = useState("");
+  const [utility, setUtility] = useState("");
   const [location, setLocation] = useState("");
   const [inspectionDate, setInspectionDate] = useState("");
   const [tm, setTM] = useState("");
@@ -28,6 +29,7 @@ export default function InspectionForm({ onAddGroup }: Props) {
       addTransformers(input: $input) {
         id
         ncTe
+        utility
         location
         inspectionDate
         tm
@@ -41,6 +43,7 @@ export default function InspectionForm({ onAddGroup }: Props) {
 
     const input = {
       ncTe,
+      utility,
       location,
       inspectionDate,
       quantity: qty,
@@ -96,6 +99,17 @@ export default function InspectionForm({ onAddGroup }: Props) {
           type="text"
           value={ncTe}
           onChange={(e) => setNcTe(e.target.value)}
+          className="w-full border px-3 py-2 rounded"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block text-sm font-medium text-slate-700 mb-1">
+          Utility
+        </label>
+        <input
+          type="text"
+          value={utility}
+          onChange={(e) => setUtility(e.target.value)}
           className="w-full border px-3 py-2 rounded"
         />
       </div>

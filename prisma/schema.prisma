@@ -10,6 +10,7 @@ datasource db {
 model Transformer {
   id              String   @id @default(uuid())
   ncTe            String?
+  utility         String?
   location        String?
   inspectionDate  String?
   tm              String?

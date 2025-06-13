@@ -7,6 +7,7 @@ import { prisma } from "../lib/prisma";
 type AddTransformerInput = {
   quantity: number;
   ncTe: string;
+  utility: string;
   location: string;
   inspectionDate: string;
   tm: string;
@@ -29,6 +30,7 @@ export const schema = createSchema<{ req: NextRequest }>({
 
     input TransformerInput {
       ncTe: String
+      utility: String
       location: String
       inspectionDate: String
       quantity: Int!
@@ -42,6 +44,7 @@ export const schema = createSchema<{ req: NextRequest }>({
     type Transformer {
       id: ID!
       ncTe: String
+      utility: String
       location: String
       inspectionDate: String
       tm: String
@@ -68,6 +71,7 @@ export const schema = createSchema<{ req: NextRequest }>({
           const {
             quantity,
             ncTe,
+            utility,
             location,
             inspectionDate,
             tm,
@@ -82,6 +86,7 @@ export const schema = createSchema<{ req: NextRequest }>({
               prisma.transformer.create({
                 data: {
                   ncTe,
+                  utility,
                   location,
                   inspectionDate: inspectionDate.toString(),
                   tm,
