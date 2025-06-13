@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { Transformer } from "@/types";
+import type { Transformer } from "@prisma/client";
 import Link from "next/link";
 
 export default function InspectionRecordsPage() {

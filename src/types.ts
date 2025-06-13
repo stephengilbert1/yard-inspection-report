@@ -1,6 +1,7 @@
 export type Transformer = {
   id: string;
   ncTe?: string;
+  utility?: string;
   location?: string;
   inspectionDate?: string;
   tm?: string;
