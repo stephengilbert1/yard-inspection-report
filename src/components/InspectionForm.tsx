@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import type { Transformer } from "@/types";
-import { convertToCSV, downloadCSV } from "@/utils/csvExport";
 
 type Props = {
   onAddGroup: (group: Transformer, qty: number) => void;
