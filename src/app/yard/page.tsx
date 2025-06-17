@@ -34,8 +34,10 @@ export default function YardPage() {
         </Link>
       </div>
       <h1 className="text-3xl font-bold mb-6">Yard Inspection Report</h1>
-      <InspectionForm onAddGroup={addGroup} />
-      <InspectionTable groups={groups} onRemove={removeGroup} />
+      <div className="space-y-8">
+        <InspectionForm onAddGroup={addGroup} />
+        <InspectionTable groups={groups} onRemove={removeGroup} />
+      </div>
     </main>
   );
 }
