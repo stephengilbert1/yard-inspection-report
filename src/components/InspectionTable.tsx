@@ -37,7 +37,10 @@ export default function InspectionTable({ groups = [], onRemove }: Props) {
             </p>
           </div>
 
-          <button className="mt-4 md:mt-0 bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700">
+          <button
+            onClick={handleExportCSV}
+            className="mt-4 md:mt-0 bg-blue-600 text-white text-sm px-4 py-2 rounded hover:bg-blue-700"
+          >
             Export table as CSV
           </button>
         </div>
