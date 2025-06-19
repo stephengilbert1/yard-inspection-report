@@ -3,7 +3,6 @@
 
 import { useState } from "react";
 import type { Transformer } from "@/types";
-import Select from "react-select";
 import CreatableSelect from "react-select/creatable";
 
 type Props = {
@@ -271,7 +270,7 @@ export default function InspectionForm({ onAddGroup }: Props) {
               }),
               placeholder: (base) => ({
                 ...base,
-                color: "#94a3b8", // slate-400
+                color: "#94a3b8",
               }),
             }}
           />
