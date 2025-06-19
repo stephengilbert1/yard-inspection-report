@@ -3,10 +3,31 @@
 
 import { useState } from "react";
 import type { Transformer } from "@/types";
+import Select from "react-select";
+import CreatableSelect from "react-select/creatable";
 
 type Props = {
   onAddGroup: (group: Transformer, qty: number) => void;
 };
+
+const issueOptions = [
+  { value: "SL Installed Incorrectly", label: "SL Installed Incorrectly" },
+  { value: "Activated Sensor", label: "Activated Sensor" },
+  {
+    value: "Activated on removal of SL",
+    label: "Activated on removal of SL",
+  },
+  {
+    value: "Activated on venting of PRV",
+    label: "Activated on venting of PRV",
+  },
+  {
+    value: "Incorrect PRV Installation",
+    label: "Incorrect PRV Installation",
+  },
+  { value: "Leaking", label: "Leaking" },
+  { value: "Damage", label: "Damage" },
+];
 
 export default function InspectionForm({ onAddGroup }: Props) {
   const [qty, setQty] = useState<number>(1);
@@ -221,15 +242,38 @@ export default function InspectionForm({ onAddGroup }: Props) {
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium text-slate-700">
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-slate-700 mb-1">
             Issues
           </label>
-          <input
-            type="text"
-            value={issues}
-            onChange={(e) => setIssues(e.target.value)}
-            className="mt-1 w-full border rounded px-3 py-2"
+          <CreatableSelect
+            isClearable
+            onChange={(selected) => setIssues(selected?.value || "")}
+            options={issueOptions}
+            placeholder="Select or type an issue"
+            styles={{
+              control: (base, state) => ({
+                ...base,
+                backgroundColor: "white",
+                borderColor: state.isFocused ? "#000000" : "none",
+                boxShadow: state.isFocused ? "0 0 0 1px #000000" : "none",
+                borderWidth: state.isFocused ? 2 : 1,
+                borderRadius: 6,
+                paddingLeft: 8,
+                paddingRight: 8,
+                minHeight: "2.5rem",
+                fontSize: "1rem",
+                transition: "border 0.2s ease, box-shadow 0.2s ease",
+              }),
+              menu: (base) => ({
+                ...base,
+                zIndex: 20,
+              }),
+              placeholder: (base) => ({
+                ...base,
+                color: "#94a3b8", // slate-400
+              }),
+            }}
           />
         </div>
 
